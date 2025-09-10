@@ -1,0 +1,124 @@
+﻿<Window x:Class="WpfTremAnimado.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfTremAnimado"
+        mc:Ignorable="d"
+        Title="Trem 2D Animado" Height="450" Width="800">
+
+    <Window.Resources>
+        <Storyboard x:Key="AnimacaoTrem" RepeatBehavior="Forever">
+            <DoubleAnimation
+                Storyboard.TargetName="TremCompleto"
+                Storyboard.TargetProperty="(Canvas.Left)"
+                From="500" To="0" Duration="0:0:5" AutoReverse="True" />
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="EscalaTrem"
+                Storyboard.TargetProperty="ScaleX">
+                <LinearDoubleKeyFrame Value="1" KeyTime="0:0:0" />
+                <LinearDoubleKeyFrame Value="1" KeyTime="0:0:5" />
+                <LinearDoubleKeyFrame Value="-1" KeyTime="0:0:5.01" />
+                <LinearDoubleKeyFrame Value="-1" KeyTime="0:0:10" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="AnimacaoFumaca" RepeatBehavior="Forever">
+            <DoubleAnimation Storyboard.TargetName="Fumaca1" Storyboard.TargetProperty="(Canvas.Top)" From="0" To="-150" Duration="0:0:2.5"/>
+            <DoubleAnimation Storyboard.TargetName="Fumaca1" Storyboard.TargetProperty="(UIElement.Opacity)" From="0.8" To="0" Duration="0:0:2.5"/>
+            <DoubleAnimation Storyboard.TargetName="Fumaca1" Storyboard.TargetProperty="(Ellipse.Width)" From="10" To="40" Duration="0:0:2.5"/>
+            <DoubleAnimation Storyboard.TargetName="Fumaca1" Storyboard.TargetProperty="(Ellipse.Height)" From="10" To="40" Duration="0:0:2.5"/>
+
+            <DoubleAnimation Storyboard.TargetName="Fumaca2" Storyboard.TargetProperty="(Canvas.Top)" From="0" To="-150" Duration="0:0:2.5" BeginTime="0:0:0.5"/>
+            <DoubleAnimation Storyboard.TargetName="Fumaca2" Storyboard.TargetProperty="(UIElement.Opacity)" From="0.8" To="0" Duration="0:0:2.5" BeginTime="0:0:0.5"/>
+            <DoubleAnimation Storyboard.TargetName="Fumaca2" Storyboard.TargetProperty="(Ellipse.Width)" From="10" To="40" Duration="0:0:2.5" BeginTime="0:0:0.5"/>
+            <DoubleAnimation Storyboard.TargetName="Fumaca2" Storyboard.TargetProperty="(Ellipse.Height)" From="10" To="40" Duration="0:0:2.5" BeginTime="0:0:0.5"/>
+
+            <DoubleAnimation Storyboard.TargetName="Fumaca3" Storyboard.TargetProperty="(Canvas.Top)" From="0" To="-150" Duration="0:0:2.5" BeginTime="0:0:1.0"/>
+            <DoubleAnimation Storyboard.TargetName="Fumaca3" Storyboard.TargetProperty="(UIElement.Opacity)" From="0.8" To="0" Duration="0:0:2.5" BeginTime="0:0:1.0"/>
+            <DoubleAnimation Storyboard.TargetName="Fumaca3" Storyboard.TargetProperty="(Ellipse.Width)" From="10" To="40" Duration="0:0:2.5" BeginTime="0:0:1.0"/>
+            <DoubleAnimation Storyboard.TargetName="Fumaca3" Storyboard.TargetProperty="(Ellipse.Height)" From="10" To="40" Duration="0:0:2.5" BeginTime="0:0:1.0"/>
+        </Storyboard>
+    </Window.Resources>
+
+    <Canvas Background="#ADD8E6">
+        <Canvas.Triggers>
+            <EventTrigger RoutedEvent="Canvas.Loaded">
+                <BeginStoryboard Storyboard="{StaticResource AnimacaoTrem}"/>
+                <BeginStoryboard Storyboard="{StaticResource AnimacaoFumaca}"/>
+            </EventTrigger>
+        </Canvas.Triggers>
+
+        <Rectangle Height="20" Width="800" Fill="#A52A2A" Canvas.Top="350"/>
+
+        <Canvas x:Name="TremCompleto" Canvas.Left="500" Canvas.Top="0">
+            <Canvas.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform x:Name="EscalaTrem" ScaleX="1" CenterX="150"/>
+                </TransformGroup>
+            </Canvas.RenderTransform>
+
+            <Rectangle x:Name="CorpoTrem" Canvas.Left="0" Canvas.Top="220" Width="300" Height="130" Fill="#006400" Stroke="Black" StrokeThickness="4" RadiusX="10" RadiusY="10"/>
+            <Rectangle Canvas.Left="175" Canvas.Top="160" Width="125" Height="70" Fill="#FF0000" Stroke="Black" StrokeThickness="4" RadiusX="5" RadiusY="5"/>
+            <Rectangle Canvas.Left="187" Canvas.Top="170" Width="101" Height="45" Fill="#B0C4DE" Stroke="Black" StrokeThickness="4"/>
+
+            <Path Fill="#FF0000" Canvas.Left="-79.248" Canvas.Top="267.144" Stroke="Black" StrokeThickness="4" RenderTransformOrigin="0.512,0.62" Height="82" Stretch="Fill" Width="78">
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90.588"/>
+                        <TranslateTransform X="8.895" Y="-10.877"/>
+                    </TransformGroup>
+                </Path.RenderTransform>
+                <Path.Data>
+                    <PathGeometry Figures="M0,50 L0,0 L50,50 z"/>
+                </Path.Data>
+            </Path>
+            <Path Fill="#1C1C1C" Canvas.Left="8.879" Canvas.Top="141.635" Stroke="Black" StrokeThickness="1" RenderTransformOrigin="0.5,0.5" Height="79" Stretch="Fill" Width="61">
+                <Path.Data>
+                    <PathGeometry Figures="M0,50 L20,0 L30,0 L50,50 z"/>
+                </Path.Data>
+            </Path>
+
+            <Canvas Canvas.Left="35" Canvas.Top="130">
+                <Ellipse x:Name="Fumaca1" Fill="#A9A9A9" Width="10" Height="10" Opacity="0.8"/>
+                <Ellipse x:Name="Fumaca2" Fill="#A9A9A9" Width="10" Height="10" Opacity="0.8"/>
+                <Ellipse x:Name="Fumaca3" Fill="#A9A9A9" Width="10" Height="10" Opacity="0.8"/>
+            </Canvas>
+
+            <Canvas x:Name="TremComponentes" Canvas.Left="20" Canvas.Top="300">
+                <Grid Canvas.Left="0" Canvas.Top="0">
+                    <Grid.RenderTransform>
+                        <RotateTransform x:Name="RotacaoRoda1" CenterX="40" CenterY="40"/>
+                    </Grid.RenderTransform>
+                    <Ellipse Width="80" Height="80" Fill="#2F4F4F" Stroke="Black" StrokeThickness="4"/>
+                    <Path Stroke="Black" StrokeThickness="6" Data="M40,5 L40,75 M5,40 L75,40 M15,15 L65,65 M15,65 L65,15"/>
+                    <Path Stroke="Red" StrokeThickness="2" Data="M40,5 L40,75 M5,40 L75,40 M15,15 L65,65 M15,65 L65,15"/>
+                </Grid>
+                <Grid Canvas.Left="95" Canvas.Top="0">
+                    <Grid.RenderTransform>
+                        <RotateTransform x:Name="RotacaoRoda2" CenterX="40" CenterY="40"/>
+                    </Grid.RenderTransform>
+                    <Ellipse Width="80" Height="80" Fill="#2F4F4F" Stroke="Black" StrokeThickness="4"/>
+                    <Path Stroke="Black" StrokeThickness="6" Data="M40,5 L40,75 M5,40 L75,40 M15,15 L65,65 M15,65 L65,15"/>
+                    <Path Stroke="Red" StrokeThickness="2" Data="M40,5 L40,75 M5,40 L75,40 M15,15 L65,65 M15,65 L65,15"/>
+                </Grid>
+                <Grid Canvas.Left="190" Canvas.Top="0">
+                    <Grid.RenderTransform>
+                        <RotateTransform x:Name="RotacaoRoda3" CenterX="40" CenterY="40"/>
+                    </Grid.RenderTransform>
+                    <Ellipse Width="80" Height="80" Fill="#2F4F4F" Stroke="Black" StrokeThickness="4"/>
+                    <Path Stroke="Black" StrokeThickness="6" Data="M40,5 L40,75 M5,40 L75,40 M15,15 L65,65 M15,65 L65,15"/>
+                    <Path Stroke="Red" StrokeThickness="2" Data="M40,5 L40,75 M5,40 L75,40 M15,15 L65,65 M15,65 L65,15"/>
+                </Grid>
+
+                <Rectangle x:Name="BarraAcoplamento" Canvas.Left="0" Canvas.Top="40" Fill="#696969" Height="5" Stroke="Black" StrokeThickness="4">
+                    <Rectangle.RenderTransform>
+                        <RotateTransform x:Name="RotacaoBarra" CenterY="2.5"/>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+            </Canvas>
+        </Canvas>
+    </Canvas>
+</Window>
